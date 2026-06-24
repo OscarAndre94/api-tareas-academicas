@@ -22,8 +22,21 @@ exports.crearTarea = async(req, res) => {
     }catch(error){
         return res.status(400).json({
             error: error.message,
-        mensaje: "Error al guardar la tarea"
+            mensaje: "Error al guardar la tarea"
         });
         
+    }
+};
+
+exports.obtenerTareas = async(req, res) => {
+    try{
+        const tareas = await Tarea.find();
+
+        return res.status(200).json(tareas);
+    }catch(error){
+        return res.status(500).json({
+            error: error.message,
+            mensaje: "Error al obtener las tareas"
+        });
     }
 };

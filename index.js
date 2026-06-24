@@ -1,9 +1,13 @@
 require('dotenv').config();
 
 //Importar dependencias
+const connection = require("./database/connection");
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
+
+//Conexión a la base de datos
+connection();
 
 //Crear el servidor
 const app = express();

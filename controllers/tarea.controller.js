@@ -100,3 +100,28 @@ exports.eliminarTarea = async(req, res) => {
         });        
     }
 };
+
+//Subir archivos
+exports.subirArchivo = async(req, res) => {
+    try{
+        if(!req.file){
+            return res.status(400).json({
+                mensaje: "Por favor, selecciona un archivo"
+            });
+        }
+
+        const urlArchivo = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+        return res.status(200).json({
+            mensaje: "Archivo subido exitosamente",
+            archivo: req.file.filename,
+            url: urlArchivo
+        });
+    }catch(error){
+        return res.status(500).json({
+            error: error.message,
+            mensaje: "Error del servidor al intentar subir el archivo"
+        });
+    }
+
+};

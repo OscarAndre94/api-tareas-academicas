@@ -21,12 +21,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//Hacer pública la carpeta de uploads
+app.use('/uploads', express.static('uploads'));
+
 //Vincular las rutas modularizadas
 app.use('/api/tareas', tareasRoutes);
-
-//Convertir los datos del body a objetos
-app.use(express.json()); //Con este middleware analizamos las solicitudes que nos lleguen en formato JSON
-app.use(express.urlencoded({extended: true}));
 
 //Servidor a escuchar
 app.listen(PORT, () => {
